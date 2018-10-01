@@ -36,9 +36,9 @@
                                 <label for="page" class="col-sm-2 control-label">Select</label>
                                 <div class="col-sm-10">
                                     <select name="page_id" id="page_id" class="form-control">
-                                        <option value="" selected>Sayfa Seçiniz</option>
+
                                         @foreach($pages as $page)
-                                        <option value="{{$page->id}}">{{$page->name}}</option>
+                                        <option value="{{$page->id}}" @if($page->id == $module->page_id) selected @endif>{{$page->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -81,8 +81,8 @@
 
     <script>
         $("#submitButton").click(function(){
-                    @if(isset($modul))
-            var url = "{{route("backend.static.moduleEdit", ["id" => $modul->id])}}";
+                    @if(isset($module))
+            var url = "{{route("backend.static.module.moduleEdit", ["id" => $module->id])}}";
 
                     @else
             var url =  "{{route("backend.static.module.newModuleCreate")}}";

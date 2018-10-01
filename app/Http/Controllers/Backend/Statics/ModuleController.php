@@ -26,31 +26,22 @@ class ModuleController extends Controller
         return view("backend.static.new-module", compact("module", "pages"));
     }
 
-    public function update(Request $request, $slug){
+    public function update(Request $request, $id){
 
-        if($request->slug == NULL){
-            $slugNew = str_slug($request->name);
-        }else{
-            $slugNew = str_slug($request->slug);
-        }
-
-        $page = Page::where("slug", $slug)->update([
+        $modul = Module::where("id", $id)->update([
             "title" => $request->title,
             "name" => $request->name,
-            "keywords" => $request->keywords,
             "description" => $request->description,
-            "slug" => $slugNew
+            "page_id" => $request->page_id,
         ]);
 
-        if($page){
+        if($modul){
             return "Oldu";
         }
     }
 
     public function create(Request $request){
         $modul = new Module();
-
-
 
         $modul->title = $request->title;
         $modul->name = $request->name;

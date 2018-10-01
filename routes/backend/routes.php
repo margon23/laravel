@@ -23,6 +23,7 @@ Route::group(["prefix" => "admin", "as" => "backend", "namespace" => "Backend"],
             Route::get("/yeni-modul", "ModuleController@newModuleShow")->name(".newModuleShow");
             Route::post("/yeni-modul-kaydet", "ModuleController@create")->name(".newModuleCreate");
             Route::get("/duzenle/{id}", "ModuleController@editModuleShow")->name(".editModuleShow");
+            Route::post("/edit/{id}", "ModuleController@update")->name(".moduleEdit");
         });
 
     });
